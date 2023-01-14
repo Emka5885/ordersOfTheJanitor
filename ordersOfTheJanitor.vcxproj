@@ -19,7 +19,12 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Puzzles\01\puzzle_01.cpp" />
     <ClCompile Include="Tasks\01.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Puzzles\01\AudioPlayer.h" />
+    <ClInclude Include="Puzzles\01\Renderer.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

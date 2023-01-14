@@ -13,6 +13,7 @@ Jeœli chodzi o to jak ma wygl¹daæ, to jest mi to totalnie obojêtne. Urodzi³em si
 chce mieæ po prostu dzia³aj¹cy program. Mogê obs³ugiwaæ go klawiatur¹, mogê obs³ugiwaæ go myszk¹. Mo¿e byæ czarno bia³y, mo¿e byæ kolorowy, nie jest to istotne.
 */
 
+/*
 #include <iostream>
 #include <vector>
 #include <array>
@@ -341,3 +342,4 @@ int main()
         }
     }
 }
+*/
