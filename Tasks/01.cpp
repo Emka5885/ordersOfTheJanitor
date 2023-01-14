@@ -21,6 +21,7 @@ chce mieæ po prostu dzia³aj¹cy program. Mogê obs³ugiwaæ go klawiatur¹, mogê obs³
 
 //"Magic Number" :D
 const int NUMBER_OF_ROOMS = 10;
+const int ZERO_IN_ASCII = 48;
 
 //all rooms
 std::array<std::string, NUMBER_OF_ROOMS> rooms({ "Lobby", "Biuro 1", "Biuro 2", "Serwerownia 1", "Serwerownia 2", "Kuchnia", "Lazienka", "Sala Konferencyjna", "Magazyn", "Kanciapa" });
@@ -36,6 +37,15 @@ struct room
     std::string name;
     std::vector<task> dailyTasks;
 };
+
+//takes one character from the input
+int getNumber()
+{
+    std::string helperNumber;
+    std::cout << "Number: ";
+    std::cin >> helperNumber;
+    return helperNumber[0] - ZERO_IN_ASCII;
+}
 
 //add one note to a specific room
 void addNote(std::vector<room>& building, std::string roomName, std::string note)
@@ -129,8 +139,7 @@ void deleteNote(std::vector<room>& building, int roomChoice)
     }
     while (true)
     {
-        std::cout << "Number: ";
-        std::cin >> noteToRemove;
+        noteToRemove = getNumber();
         if (noteToRemove >= 1 && noteToRemove <= building[roomChoice - 1].dailyTasks.back().num)
         {
             break;
@@ -187,8 +196,7 @@ int main()
         std::cout << "1 - Add new notes\n2 - Delete notes\n3 - View notes\n4 - Quitt\n";
         while (true)
         {
-            std::cout << "Number: ";
-            std::cin >> choice;
+            choice = getNumber();
             if (choice >= 1 && choice <= 4)
             {
                 break;
@@ -209,8 +217,7 @@ int main()
             std::cout << "How many notes you want to add?\n";
             while (true)
             {
-                std::cout << "Number: ";
-                std::cin >> howManyNotes;
+                howManyNotes = getNumber();
                 if (howManyNotes >= 1 && howManyNotes <= 9)
                 {
                     break;
@@ -236,8 +243,7 @@ int main()
                 }
                 while (true)
                 {
-                    std::cout << "Number: ";
-                    std::cin >> roomChoice;
+                    roomChoice = getNumber();
                     if (roomChoice >= 1 && roomChoice <= NUMBER_OF_ROOMS)
                     {
                         break;
@@ -268,8 +274,7 @@ int main()
             std::cout << "1 - Yes\n2 - No\n";
             while (true)
             {
-                std::cout << "Number: ";
-                std::cin >> deleteAllNotesFromBuilding;
+                deleteAllNotesFromBuilding = getNumber();
                 if (deleteAllNotesFromBuilding == 1 || deleteAllNotesFromBuilding == 2)
                 {
                     break;
@@ -298,8 +303,7 @@ int main()
                 }
                 while (true)
                 {
-                    std::cout << "Number: ";
-                    std::cin >> roomChoice;
+                    roomChoice = getNumber();
                     if (roomChoice >= 1 && roomChoice <= NUMBER_OF_ROOMS)
                     {
                         break;
@@ -325,8 +329,7 @@ int main()
                     std::cout << "1 - Yes\n2 - No\n";
                     while (true)
                     {
-                        std::cout << "Number: ";
-                        std::cin >> deleteAll;
+                        deleteAll = getNumber();
                         if (deleteAll == 1 || deleteAll == 2)
                         {
                             break;
@@ -363,8 +366,7 @@ int main()
             std::cout << "1 - View all notes\n2 - View notes from one room\n";
             while (true)
             {
-                std::cout << "Number: ";
-                std::cin >> viewChoice;
+                viewChoice = getNumber();
                 if (viewChoice == 1 || viewChoice == 2)
                 {
                     break;
@@ -392,8 +394,7 @@ int main()
                 }
                 while (true)
                 {
-                    std::cout << "Number: ";
-                    std::cin >> roomChoice;
+                    roomChoice = getNumber();
                     if (roomChoice >= 1 && roomChoice <= NUMBER_OF_ROOMS)
                     {
                         break;
