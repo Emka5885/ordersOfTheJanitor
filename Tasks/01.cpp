@@ -13,7 +13,7 @@ Jeœli chodzi o to jak ma wygl¹daæ, to jest mi to totalnie obojêtne. Urodzi³em si
 chce mieæ po prostu dzia³aj¹cy program. Mogê obs³ugiwaæ go klawiatur¹, mogê obs³ugiwaæ go myszk¹. Mo¿e byæ czarno bia³y, mo¿e byæ kolorowy, nie jest to istotne.
 */
 
-/*
+
 #include <iostream>
 #include <vector>
 #include <array>
@@ -127,7 +127,21 @@ void deleteNote(std::vector<room>& building, int roomChoice)
     {
         std::cout << i + 1 << " - " << building[roomChoice - 1].dailyTasks[i].note << "\n";
     }
-    std::cin >> noteToRemove;
+    while (true)
+    {
+        std::cout << "Number: ";
+        std::cin >> noteToRemove;
+        if (noteToRemove >= 1 && noteToRemove <= building[roomChoice - 1].dailyTasks.back().num)
+        {
+            break;
+        }
+        else
+        {
+            std::cout << "Try again\n";
+            std::cin.clear();
+            std::cin.ignore();
+        }
+    }
     std::cout << "\n";
 
     //remove note
@@ -182,6 +196,8 @@ int main()
             else
             {
                 std::cout << "Try again\n";
+                std::cin.clear();
+                std::cin.ignore();
             }
         }
         std::cout << "\n";
@@ -191,36 +207,56 @@ int main()
         case 1:
             int howManyNotes;
             std::cout << "How many notes you want to add?\n";
-            std::cin >> howManyNotes;
+            while (true)
+            {
+                std::cout << "Number: ";
+                std::cin >> howManyNotes;
+                if (howManyNotes >= 1 && howManyNotes <= 9)
+                {
+                    break;
+                }
+                else
+                {
+                    std::cout << "Try again\n";
+                    std::cin.clear();
+                    std::cin.ignore();
+                }
+            }
             std::cout << "\n";
 
             //we can add several notes at once
             for (int i = 0; i < howManyNotes; i++)
             {
-                int roomChoice;
+                int roomChoice = 0;
                 std::cout << "To which room you want to add a note?\n";
 
                 for (int i = 0; i < NUMBER_OF_ROOMS; i++)
                 {
                     std::cout << i + 1 << " - " << rooms[i] << "\n";
                 }
-                std::cout << "Number: ";
-                std::cin >> roomChoice;
-                if (roomChoice >= 1 && roomChoice <= NUMBER_OF_ROOMS)
+                while (true)
                 {
-                    std::cout << "\nEnter the content of the note:\n";
-                    std::string note;
-                    std::cin.clear();
-                    std::cin.ignore();
-                    std::getline(std::cin, note);
-                    std::cout << "\n";
+                    std::cout << "Number: ";
+                    std::cin >> roomChoice;
+                    if (roomChoice >= 1 && roomChoice <= NUMBER_OF_ROOMS)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        std::cout << "Try again\n";
+                        std::cin.clear();
+                        std::cin.ignore();
+                    }
+                }
+                std::cout << "\nEnter the content of the note:\n";
+                std::string note;
+                std::cin.clear();
+                std::cin.ignore();
+                std::getline(std::cin, note);
+                std::cout << "\n";
 
-                    addNote(building, rooms[roomChoice - 1], note);
-                }
-                else
-                {
-                    std::cout << "I don't know what you want to do :c\n\n";
-                }
+                addNote(building, rooms[roomChoice - 1], note);
             }
 
             break;
@@ -230,14 +266,28 @@ int main()
             int deleteAllNotesFromBuilding;
             std::cout << "Whether you want to delete all the notes?\n";
             std::cout << "1 - Yes\n2 - No\n";
-            std::cin >> deleteAllNotesFromBuilding;
+            while (true)
+            {
+                std::cout << "Number: ";
+                std::cin >> deleteAllNotesFromBuilding;
+                if (deleteAllNotesFromBuilding == 1 || deleteAllNotesFromBuilding == 2)
+                {
+                    break;
+                }
+                else
+                {
+                    std::cout << "Try again\n";
+                    std::cin.clear();
+                    std::cin.ignore();
+                }
+            }
             std::cout << "\n";
             if (deleteAllNotesFromBuilding == 1)
             {
                 //remove all notes from the building
                 deleteAllNotes(building);
             }
-            else if (deleteAllNotesFromBuilding == 2)
+            else
             {
                 int roomChoice;
                 std::cout << "From which room you want to remove the note?\n";
@@ -246,8 +296,21 @@ int main()
                 {
                     std::cout << i + 1 << " - " << rooms[i] << "\n";
                 }
-                std::cout << "Number: ";
-                std::cin >> roomChoice;
+                while (true)
+                {
+                    std::cout << "Number: ";
+                    std::cin >> roomChoice;
+                    if (roomChoice >= 1 && roomChoice <= NUMBER_OF_ROOMS)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        std::cout << "Try again\n";
+                        std::cin.clear();
+                        std::cin.ignore();
+                    }
+                }
                 std::cout << "\n";
 
                 if (building[roomChoice - 1].dailyTasks.empty())
@@ -255,38 +318,40 @@ int main()
                     //if we don't have any notes in the room
                     std::cout << "Empty, you can't delete anything!\n";
                 }
-                else if (roomChoice < 1 || roomChoice > 10)
-                {
-                    std::cout << "I don't know what you want to do :c\n\n";
-                }
                 else
                 {
                     int deleteAll;
                     std::cout << "Whether you want to remove all notes from the room?\n";
                     std::cout << "1 - Yes\n2 - No\n";
-                    std::cin >> deleteAll;
+                    while (true)
+                    {
+                        std::cout << "Number: ";
+                        std::cin >> deleteAll;
+                        if (deleteAll == 1 || deleteAll == 2)
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            std::cout << "Try again\n";
+                            std::cin.clear();
+                            std::cin.ignore();
+                        }
+                    }
                     std::cout << "\n";
                     if (deleteAll == 1)
                     {
                         //remove all notes from the specific room
                         deleteAllNotesFromOneRoom(building, roomChoice);
                     }
-                    else if (deleteAll == 2)
+                    else
                     {
                         std::cout << "Which note you want to delete?\n";
 
                         //remove a specific note from the room
                         deleteNote(building, roomChoice);
                     }
-                    else
-                    {
-                        std::cout << "I don't know what you want to do :c\n\n";
-                    }
                 }
-            }
-            else
-            {
-                std::cout << "I don't know what you want to do :c\n\n";
             }
 
             break;
@@ -296,40 +361,53 @@ int main()
             int viewChoice;
             std::cout << "What do you want to do now?\n";
             std::cout << "1 - View all notes\n2 - View notes from one room\n";
-            std::cout << "Number: ";
-            std::cin >> viewChoice;
+            while (true)
+            {
+                std::cout << "Number: ";
+                std::cin >> viewChoice;
+                if (viewChoice == 1 || viewChoice == 2)
+                {
+                    break;
+                }
+                else
+                {
+                    std::cout << "Try again\n";
+                    std::cin.clear();
+                    std::cin.ignore();
+                }
+            }
             std::cout << "\n";
 
-            switch (viewChoice)
+            if (viewChoice == 1)
             {
-            case 1:
                 viewAllNotes(building);
-                break;
-
-            case 2:
+            }
+            else
+            {
                 int roomChoice;
                 std::cout << "From which room you want to display the notes?\n";
                 for (int i = 0; i < NUMBER_OF_ROOMS; i++)
                 {
                     std::cout << i + 1 << " - " << rooms[i] << "\n";
                 }
-                std::cout << "Number: ";
-                std::cin >> roomChoice;
+                while (true)
+                {
+                    std::cout << "Number: ";
+                    std::cin >> roomChoice;
+                    if (roomChoice >= 1 && roomChoice <= NUMBER_OF_ROOMS)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        std::cout << "Try again\n";
+                        std::cin.clear();
+                        std::cin.ignore();
+                    }
+                }
                 std::cout << "\n";
 
-                if (roomChoice >= 1 && roomChoice <= 10)
-                {
-                    viewAllNotesFromOneRoom(building, rooms[roomChoice - 1]);
-                }
-                else
-                {
-                    std::cout << "I don't know what you want to do :c\n\n";
-                }
-
-                break;
-
-            default:
-                std::cout << "I don't know what you want to do :c\n\n";
+                viewAllNotesFromOneRoom(building, rooms[roomChoice - 1]);
             }
 
             break;
@@ -342,4 +420,3 @@ int main()
         }
     }
 }
-*/
