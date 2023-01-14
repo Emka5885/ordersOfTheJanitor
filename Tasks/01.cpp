@@ -262,7 +262,10 @@ int main()
                 std::getline(std::cin, note);
                 std::cout << "\n";
 
-                addNote(building, rooms[roomChoice - 1], note);
+                if (!note.empty())
+                {
+                    addNote(building, rooms[roomChoice - 1], note);
+                }
             }
 
             break;
