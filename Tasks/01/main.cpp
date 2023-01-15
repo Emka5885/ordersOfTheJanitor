@@ -27,13 +27,50 @@ const int ZERO_IN_ASCII = 48;
 //all rooms
 std::array<std::string, NUMBER_OF_ROOMS> rooms({ "Lobby", "Biuro 1", "Biuro 2", "Serwerownia 1", "Serwerownia 2", "Kuchnia", "Lazienka", "Sala Konferencyjna", "Magazyn", "Kanciapa" });
 
-//takes one character from the input
-int getNumber()
+int promptUserForNumber()
 {
     std::string helperNumber;
     std::cout << "Number: ";
     std::cin >> helperNumber;
     return helperNumber[0] - ZERO_IN_ASCII;
+}
+
+void checkUserInputBetweenMinMax(int& variable, int min, int max)
+{
+    while (true)
+    {
+        variable = promptUserForNumber();
+        if (variable >= min && variable <= max)
+        {
+            break;
+        }
+        else
+        {
+            std::cout << "Try again\n";
+            std::cin.clear();
+            std::cin.ignore();
+        }
+    }
+    std::cout << "\n";
+}
+
+void checkUserInputOneOrTwo(int& variable)
+{
+    while (true)
+    {
+        variable = promptUserForNumber();
+        if (variable == 1 || variable == 2)
+        {
+            break;
+        }
+        else
+        {
+            std::cout << "Try again\n";
+            std::cin.clear();
+            std::cin.ignore();
+        }
+    }
+    std::cout << "\n";
 }
 
 //add one note to a specific room
@@ -126,21 +163,7 @@ void deleteNote(std::vector<room>& building, int roomChoice)
     {
         std::cout << i + 1 << " - " << building[roomChoice - 1].dailyTasks[i].note << "\n";
     }
-    while (true)
-    {
-        noteToRemove = getNumber();
-        if (noteToRemove >= 1 && noteToRemove <= building[roomChoice - 1].dailyTasks.back().num)
-        {
-            break;
-        }
-        else
-        {
-            std::cout << "Try again\n";
-            std::cin.clear();
-            std::cin.ignore();
-        }
-    }
-    std::cout << "\n";
+    checkUserInputBetweenMinMax(noteToRemove, 1, building[roomChoice - 1].dailyTasks.back().num);
 
     //remove note
     building[roomChoice - 1].dailyTasks.erase(building[roomChoice - 1].dailyTasks.begin() + noteToRemove - 1, building[roomChoice - 1].dailyTasks.begin() + noteToRemove);
@@ -183,42 +206,14 @@ int main()
         int choice;
         std::cout << "What do you want to do?\n";
         std::cout << "1 - Add new notes\n2 - Delete notes\n3 - View notes\n4 - Quitt\n";
-        while (true)
-        {
-            choice = getNumber();
-            if (choice >= 1 && choice <= 4)
-            {
-                break;
-            }
-            else
-            {
-                std::cout << "Try again\n";
-                std::cin.clear();
-                std::cin.ignore();
-            }
-        }
-        std::cout << "\n";
+        checkUserInputBetweenMinMax(choice, 1, 4);
         switch (choice)
         {
             //if we want to add new notes
         case 1:
             int howManyNotes;
             std::cout << "How many notes you want to add?\n";
-            while (true)
-            {
-                howManyNotes = getNumber();
-                if (howManyNotes >= 1 && howManyNotes <= 9)
-                {
-                    break;
-                }
-                else
-                {
-                    std::cout << "Try again\n";
-                    std::cin.clear();
-                    std::cin.ignore();
-                }
-            }
-            std::cout << "\n";
+            checkUserInputBetweenMinMax(howManyNotes, 1, 9);
 
             //we can add several notes at once
             for (int i = 0; i < howManyNotes; i++)
@@ -230,21 +225,9 @@ int main()
                 {
                     std::cout << i + 1 << " - " << rooms[i] << "\n";
                 }
-                while (true)
-                {
-                    roomChoice = getNumber();
-                    if (roomChoice >= 1 && roomChoice <= NUMBER_OF_ROOMS)
-                    {
-                        break;
-                    }
-                    else
-                    {
-                        std::cout << "Try again\n";
-                        std::cin.clear();
-                        std::cin.ignore();
-                    }
-                }
-                std::cout << "\nEnter the content of the note:\n";
+                checkUserInputBetweenMinMax(roomChoice, 1, NUMBER_OF_ROOMS);
+
+                std::cout << "Enter the content of the note:\n";
                 std::string note;
                 std::cin.clear();
                 std::cin.ignore();
@@ -264,21 +247,8 @@ int main()
             int deleteAllNotesFromBuilding;
             std::cout << "Whether you want to delete all the notes?\n";
             std::cout << "1 - Yes\n2 - No\n";
-            while (true)
-            {
-                deleteAllNotesFromBuilding = getNumber();
-                if (deleteAllNotesFromBuilding == 1 || deleteAllNotesFromBuilding == 2)
-                {
-                    break;
-                }
-                else
-                {
-                    std::cout << "Try again\n";
-                    std::cin.clear();
-                    std::cin.ignore();
-                }
-            }
-            std::cout << "\n";
+            checkUserInputOneOrTwo(deleteAllNotesFromBuilding);
+
             if (deleteAllNotesFromBuilding == 1)
             {
                 //remove all notes from the building
@@ -293,21 +263,7 @@ int main()
                 {
                     std::cout << i + 1 << " - " << rooms[i] << "\n";
                 }
-                while (true)
-                {
-                    roomChoice = getNumber();
-                    if (roomChoice >= 1 && roomChoice <= NUMBER_OF_ROOMS)
-                    {
-                        break;
-                    }
-                    else
-                    {
-                        std::cout << "Try again\n";
-                        std::cin.clear();
-                        std::cin.ignore();
-                    }
-                }
-                std::cout << "\n";
+                checkUserInputBetweenMinMax(roomChoice, 1, NUMBER_OF_ROOMS);
 
                 if (building[roomChoice - 1].dailyTasks.empty())
                 {
@@ -319,21 +275,8 @@ int main()
                     int deleteAll;
                     std::cout << "Whether you want to remove all notes from the room?\n";
                     std::cout << "1 - Yes\n2 - No\n";
-                    while (true)
-                    {
-                        deleteAll = getNumber();
-                        if (deleteAll == 1 || deleteAll == 2)
-                        {
-                            break;
-                        }
-                        else
-                        {
-                            std::cout << "Try again\n";
-                            std::cin.clear();
-                            std::cin.ignore();
-                        }
-                    }
-                    std::cout << "\n";
+                    checkUserInputOneOrTwo(deleteAll);
+
                     if (deleteAll == 1)
                     {
                         //remove all notes from the specific room
@@ -356,21 +299,7 @@ int main()
             int viewChoice;
             std::cout << "What do you want to do now?\n";
             std::cout << "1 - View all notes\n2 - View notes from one room\n";
-            while (true)
-            {
-                viewChoice = getNumber();
-                if (viewChoice == 1 || viewChoice == 2)
-                {
-                    break;
-                }
-                else
-                {
-                    std::cout << "Try again\n";
-                    std::cin.clear();
-                    std::cin.ignore();
-                }
-            }
-            std::cout << "\n";
+            checkUserInputOneOrTwo(viewChoice);
 
             if (viewChoice == 1)
             {
@@ -384,28 +313,13 @@ int main()
                 {
                     std::cout << i + 1 << " - " << rooms[i] << "\n";
                 }
-                while (true)
-                {
-                    roomChoice = getNumber();
-                    if (roomChoice >= 1 && roomChoice <= NUMBER_OF_ROOMS)
-                    {
-                        break;
-                    }
-                    else
-                    {
-                        std::cout << "Try again\n";
-                        std::cin.clear();
-                        std::cin.ignore();
-                    }
-                }
-                std::cout << "\n";
+                checkUserInputBetweenMinMax(roomChoice, 1, NUMBER_OF_ROOMS);
 
                 viewAllNotesFromOneRoom(building, rooms[roomChoice - 1]);
             }
 
             break;
 
-            //if we want to quit
         case 4:
             quitt = true;
             std::cout << "See you tomorrow!\n";
