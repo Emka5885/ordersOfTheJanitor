@@ -19,7 +19,13 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Tasks\01.cpp" />
+    <ClCompile Include="Tasks\01\main.cpp" />
+    <ClCompile Include="Tasks\01\Room.cpp" />
+    <ClCompile Include="Tasks\01\Task.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Tasks\01\Room.h" />
+    <ClInclude Include="Tasks\01\Task.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

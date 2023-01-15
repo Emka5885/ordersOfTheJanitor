@@ -18,6 +18,7 @@ chce mieæ po prostu dzia³aj¹cy program. Mogê obs³ugiwaæ go klawiatur¹, mogê obs³
 #include <vector>
 #include <array>
 #include <string>
+#include "Room.h"
 
 //"Magic Number" :D
 const int NUMBER_OF_ROOMS = 10;
@@ -25,18 +26,6 @@ const int ZERO_IN_ASCII = 48;
 
 //all rooms
 std::array<std::string, NUMBER_OF_ROOMS> rooms({ "Lobby", "Biuro 1", "Biuro 2", "Serwerownia 1", "Serwerownia 2", "Kuchnia", "Lazienka", "Sala Konferencyjna", "Magazyn", "Kanciapa" });
-
-struct task
-{
-    int num;
-    std::string note;
-};
-
-struct room
-{
-    std::string name;
-    std::vector<task> dailyTasks;
-};
 
 //takes one character from the input
 int getNumber()
