@@ -20,21 +20,32 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Tasks\01\AddNote.cpp" />
+    <ClCompile Include="Tasks\01\AddNoteState.cpp" />
     <ClCompile Include="Tasks\01\DeleteNotes.cpp" />
+    <ClCompile Include="Tasks\01\DeleteNotesState.cpp" />
     <ClCompile Include="Tasks\01\DisplayNotes.cpp" />
+    <ClCompile Include="Tasks\01\DisplayNotesState.cpp" />
     <ClCompile Include="Tasks\01\HelperFunctions.cpp" />
     <ClCompile Include="Tasks\01\main.cpp" />
     <ClCompile Include="Tasks\01\Room.cpp" />
+    <ClCompile Include="Tasks\01\StateMachine.cpp" />
     <ClCompile Include="Tasks\01\Task.cpp" />
+    <ClCompile Include="Tasks\01\WorkLoop.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Tasks\01\AddNote.h" />
+    <ClInclude Include="Tasks\01\AddNoteState.h" />
     <ClInclude Include="Tasks\01\DeleteNotes.h" />
+    <ClInclude Include="Tasks\01\DeleteNotesState.h" />
     <ClInclude Include="Tasks\01\DisplayNotes.h" />
+    <ClInclude Include="Tasks\01\DisplayNotesState.h" />
+    <ClInclude Include="Tasks\01\State.h" />
+    <ClInclude Include="Tasks\01\StateMachine.h" />
     <ClInclude Include="Tasks\01\Values.h" />
     <ClInclude Include="Tasks\01\HelperFunctions.h" />
     <ClInclude Include="Tasks\01\Room.h" />
     <ClInclude Include="Tasks\01\Task.h" />
+    <ClInclude Include="Tasks\01\WorkLoop.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

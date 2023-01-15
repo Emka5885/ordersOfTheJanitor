@@ -13,18 +13,8 @@ Jeœli chodzi o to jak ma wygl¹daæ, to jest mi to totalnie obojêtne. Urodzi³em si
 chce mieæ po prostu dzia³aj¹cy program. Mogê obs³ugiwaæ go klawiatur¹, mogê obs³ugiwaæ go myszk¹. Mo¿e byæ czarno bia³y, mo¿e byæ kolorowy, nie jest to istotne.
 */
 
+#include "WorkLoop.h"
 
-#include <iostream>
-#include <vector>
-#include <array>
-#include <string>
-#include "Room.h"
-#include "HelperFunctions.h"
-#include "AddNote.h"
-#include "DisplayNotes.h"
-#include "DeleteNotes.h"
-
-//all rooms
 std::array<std::string, NUMBER_OF_ROOMS> rooms({ "Lobby", "Biuro 1", "Biuro 2", "Serwerownia 1", "Serwerownia 2", "Kuchnia", "Lazienka", "Sala Konferencyjna", "Magazyn", "Kanciapa" });
 
 int main()
@@ -40,127 +30,7 @@ int main()
 
     while (!quitt)
     {
-        int choice;
-        std::cout << "What do you want to do?\n";
-        std::cout << "1 - Add new notes\n2 - Delete notes\n3 - View notes\n4 - Quitt\n";
-        checkUserInputBetweenMinMax(choice, 1, 4);
-        switch (choice)
-        {
-            //if we want to add new notes
-        case 1:
-            int howManyNotes;
-            std::cout << "How many notes you want to add?\n";
-            checkUserInputBetweenMinMax(howManyNotes, 1, 9);
-
-            //we can add several notes at once
-            for (int i = 0; i < howManyNotes; i++)
-            {
-                int roomChoice = 0;
-                std::cout << "To which room you want to add a note?\n";
-
-                for (int i = 0; i < NUMBER_OF_ROOMS; i++)
-                {
-                    std::cout << i + 1 << " - " << rooms[i] << "\n";
-                }
-                checkUserInputBetweenMinMax(roomChoice, 1, NUMBER_OF_ROOMS);
-
-                std::cout << "Enter the content of the note:\n";
-                std::string note;
-                std::cin.clear();
-                std::cin.ignore();
-                std::getline(std::cin, note);
-                std::cout << "\n";
-
-                if (!note.empty())
-                {
-                    addNote(building, rooms[roomChoice - 1], note);
-                }
-            }
-
-            break;
-
-            //if we want to delete notes
-        case 2:
-            int deleteAllNotesFromBuilding;
-            std::cout << "Whether you want to delete all the notes?\n";
-            std::cout << "1 - Yes\n2 - No\n";
-            checkUserInputOneOrTwo(deleteAllNotesFromBuilding);
-
-            if (deleteAllNotesFromBuilding == 1)
-            {
-                //remove all notes from the building
-                deleteAllNotes(building);
-            }
-            else
-            {
-                int roomChoice;
-                std::cout << "From which room you want to remove the note?\n";
-
-                for (int i = 0; i < NUMBER_OF_ROOMS; i++)
-                {
-                    std::cout << i + 1 << " - " << rooms[i] << "\n";
-                }
-                checkUserInputBetweenMinMax(roomChoice, 1, NUMBER_OF_ROOMS);
-
-                if (building[roomChoice - 1].dailyTasks.empty())
-                {
-                    //if we don't have any notes in the room
-                    std::cout << "Empty, you can't delete anything!\n";
-                }
-                else
-                {
-                    int deleteAll;
-                    std::cout << "Whether you want to remove all notes from the room?\n";
-                    std::cout << "1 - Yes\n2 - No\n";
-                    checkUserInputOneOrTwo(deleteAll);
-
-                    if (deleteAll == 1)
-                    {
-                        //remove all notes from the specific room
-                        deleteAllNotesFromOneRoom(building, roomChoice);
-                    }
-                    else
-                    {
-                        std::cout << "Which note you want to delete?\n";
-
-                        //remove a specific note from the room
-                        deleteNote(building, roomChoice);
-                    }
-                }
-            }
-
-            break;
-
-            //if we want to display the notes
-        case 3:
-            int viewChoice;
-            std::cout << "What do you want to do now?\n";
-            std::cout << "1 - View all notes\n2 - View notes from one room\n";
-            checkUserInputOneOrTwo(viewChoice);
-
-            if (viewChoice == 1)
-            {
-                viewAllNotes(building);
-            }
-            else
-            {
-                int roomChoice;
-                std::cout << "From which room you want to display the notes?\n";
-                for (int i = 0; i < NUMBER_OF_ROOMS; i++)
-                {
-                    std::cout << i + 1 << " - " << rooms[i] << "\n";
-                }
-                checkUserInputBetweenMinMax(roomChoice, 1, NUMBER_OF_ROOMS);
-
-                viewAllNotesFromOneRoom(building, rooms[roomChoice - 1]);
-            }
-
-            break;
-
-        case 4:
-            quitt = true;
-            std::cout << "See you tomorrow!\n";
-            break;
-        }
+        WorkLoop work;
+        work.Run(quitt, building, rooms);
     }
 }
