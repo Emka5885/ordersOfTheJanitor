@@ -10,7 +10,7 @@ void deleteNote(std::vector<room>& building, int roomChoice)
     checkUserInputBetweenMinMax(noteToRemove, 1, building[roomChoice - 1].dailyTasks.back().num);
 
     //remove note
-    building[roomChoice - 1].dailyTasks.erase(building[roomChoice - 1].dailyTasks.begin() + noteToRemove - 1, building[roomChoice - 1].dailyTasks.begin() + noteToRemove);
+    building[roomChoice - 1].dailyTasks.erase(building[roomChoice - 1].dailyTasks.begin() + noteToRemove - 1);
 
     //make sure the notes are numbered in the correct order
     for (int i = 0; i < building[roomChoice - 1].dailyTasks.size(); i++)

@@ -2,8 +2,7 @@
 
 void StateMachine::AddState(StateRef newState)
 {
-	this->_newState = std::move(newState);
-	this->_states.push(std::move(this->_newState));
+	this->_states.push(std::move(newState));
 }
 
 void StateMachine::RemoveState()

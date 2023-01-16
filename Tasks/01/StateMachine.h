@@ -17,5 +17,4 @@ public:
 
 private:
 	std::stack<StateRef> _states;
-	StateRef _newState;
 };
