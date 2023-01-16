@@ -13,7 +13,7 @@ Jeœli chodzi o to jak ma wygl¹daæ, to jest mi to totalnie obojêtne. Urodzi³em si
 chce mieæ po prostu dzia³aj¹cy program. Mogê obs³ugiwaæ go klawiatur¹, mogê obs³ugiwaæ go myszk¹. Mo¿e byæ czarno bia³y, mo¿e byæ kolorowy, nie jest to istotne.
 */
 
-#include "WorkLoop.h"
+#include "MainLoop.h"
 
 std::array<std::string, NUMBER_OF_ROOMS> rooms({ "Lobby", "Biuro 1", "Biuro 2", "Serwerownia 1", "Serwerownia 2", "Kuchnia", "Lazienka", "Sala Konferencyjna", "Magazyn", "Kanciapa" });
 
@@ -26,11 +26,9 @@ int main()
         building.back().name = rooms[i];
     }
 
-    bool quitt = false;
 
-    while (!quitt)
-    {
-        WorkLoop work;
-        work.Run(quitt, building, rooms);
-    }
+    MainLoop main;
+    main.Run(building, rooms);
+
+    return 0;
 }

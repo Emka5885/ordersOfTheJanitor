@@ -30,7 +30,7 @@
     <ClCompile Include="Tasks\01\Room.cpp" />
     <ClCompile Include="Tasks\01\StateMachine.cpp" />
     <ClCompile Include="Tasks\01\Task.cpp" />
-    <ClCompile Include="Tasks\01\WorkLoop.cpp" />
+    <ClCompile Include="Tasks\01\MainLoop.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Tasks\01\AddNote.h" />
@@ -45,7 +45,7 @@
     <ClInclude Include="Tasks\01\HelperFunctions.h" />
     <ClInclude Include="Tasks\01\Room.h" />
     <ClInclude Include="Tasks\01\Task.h" />
-    <ClInclude Include="Tasks\01\WorkLoop.h" />
+    <ClInclude Include="Tasks\01\MainLoop.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

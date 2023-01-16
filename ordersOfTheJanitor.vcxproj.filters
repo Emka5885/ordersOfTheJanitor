@@ -48,7 +48,7 @@
     <ClCompile Include="Tasks\01\DisplayNotesState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Tasks\01\WorkLoop.cpp">
+    <ClCompile Include="Tasks\01\MainLoop.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -89,7 +89,7 @@
     <ClInclude Include="Tasks\01\DisplayNotesState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Tasks\01\WorkLoop.h">
+    <ClInclude Include="Tasks\01\MainLoop.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
