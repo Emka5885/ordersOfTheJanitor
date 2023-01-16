@@ -20,15 +20,15 @@ void MainLoop::Run(std::vector<room>& building, std::array<std::string, NUMBER_O
 		switch (choice)
 		{
 		case 1:
-			_data.AddState(StateRef(new AddNoteState(building, rooms)));
+			data.AddState(StateRef(new AddNoteState(building, rooms)));
 			break;
 
 		case 2:
-			_data.AddState(StateRef(new DeleteNotesState(building, rooms)));
+			data.AddState(StateRef(new DeleteNotesState(building, rooms)));
 			break;
 
 		case 3:
-			_data.AddState(StateRef(new DisplayNotesState(building, rooms)));
+			data.AddState(StateRef(new DisplayNotesState(building, rooms)));
 			break;
 
 		case 4:
@@ -37,6 +37,6 @@ void MainLoop::Run(std::vector<room>& building, std::array<std::string, NUMBER_O
 			break;
 		}
 
-		_data.RemoveState();
+		data.RemoveState();
 	}
 }

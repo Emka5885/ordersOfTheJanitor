@@ -8,6 +8,6 @@ public:
 	void Run(std::vector<room>& building, std::array<std::string, NUMBER_OF_ROOMS>& rooms);
 
 private:
-	StateMachine _data;
+	StateMachine data;
 	bool quitt;
 };

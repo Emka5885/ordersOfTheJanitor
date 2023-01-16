@@ -1,6 +1,6 @@
 #include "DisplayNotesState.h"
 
-DisplayNotesState::DisplayNotesState(std::vector<room>& building, std::array<std::string, NUMBER_OF_ROOMS>& rooms) : _building(building), _rooms(rooms)
+DisplayNotesState::DisplayNotesState(std::vector<room>& building, std::array<std::string, NUMBER_OF_ROOMS>& rooms) : building(building), rooms(rooms)
 {
     Run();
 }
@@ -14,7 +14,7 @@ void DisplayNotesState::Run()
 
         if (viewChoice == 1)
         {
-            viewAllNotes(_building);
+            viewAllNotes(building);
         }
         else
         {
@@ -22,10 +22,10 @@ void DisplayNotesState::Run()
             std::cout << "From which room you want to display the notes?\n";
             for (int i = 0; i < NUMBER_OF_ROOMS; i++)
             {
-                std::cout << i + 1 << " - " << _rooms[i] << "\n";
+                std::cout << i + 1 << " - " << rooms[i] << "\n";
             }
             checkUserInputBetweenMinMax(roomChoice, 1, NUMBER_OF_ROOMS);
 
-            viewAllNotesFromOneRoom(_building, _rooms[roomChoice - 1]);
+            viewAllNotesFromOneRoom(building, rooms[roomChoice - 1]);
         }
 }

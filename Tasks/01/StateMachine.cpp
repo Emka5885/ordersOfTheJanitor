@@ -2,13 +2,13 @@
 
 void StateMachine::AddState(StateRef newState)
 {
-	this->_states.push(std::move(newState));
+	this->states.push(std::move(newState));
 }
 
 void StateMachine::RemoveState()
 {
-	if (!this->_states.empty())
+	if (!this->states.empty())
 	{
-		this->_states.pop();
+		this->states.pop();
 	}
 }

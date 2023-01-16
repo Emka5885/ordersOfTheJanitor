@@ -1,6 +1,6 @@
 #include "DeleteNotesState.h"
 
-DeleteNotesState::DeleteNotesState(std::vector<room>& building, std::array<std::string, NUMBER_OF_ROOMS>& rooms) : _building(building), _rooms(rooms)
+DeleteNotesState::DeleteNotesState(std::vector<room>& building, std::array<std::string, NUMBER_OF_ROOMS>& rooms) : building(building), rooms(rooms)
 {
     Run();
 }
@@ -15,7 +15,7 @@ void DeleteNotesState::Run()
         if (deleteAllNotesFromBuilding == 1)
         {
             //remove all notes from the building
-            deleteAllNotes(_building);
+            deleteAllNotes(building);
         }
         else
         {
@@ -24,11 +24,11 @@ void DeleteNotesState::Run()
 
             for (int i = 0; i < NUMBER_OF_ROOMS; i++)
             {
-                std::cout << i + 1 << " - " << _rooms[i] << "\n";
+                std::cout << i + 1 << " - " << rooms[i] << "\n";
             }
             checkUserInputBetweenMinMax(roomChoice, 1, NUMBER_OF_ROOMS);
 
-            if (_building[roomChoice - 1].dailyTasks.empty())
+            if (building[roomChoice - 1].dailyTasks.empty())
             {
                 //if we don't have any notes in the room
                 std::cout << "Empty, you can't delete anything!\n";
@@ -43,14 +43,14 @@ void DeleteNotesState::Run()
                 if (deleteAll == 1)
                 {
                     //remove all notes from the specific room
-                    deleteAllNotesFromOneRoom(_building, roomChoice);
+                    deleteAllNotesFromOneRoom(building, roomChoice);
                 }
                 else
                 {
                     std::cout << "Which note you want to delete?\n";
 
                     //remove a specific note from the room
-                    deleteNote(_building, roomChoice);
+                    deleteNote(building, roomChoice);
                 }
             }
         }

@@ -11,6 +11,6 @@ public:
 	void Run();
 
 private:
-	std::vector<room>& _building;
-	std::array<std::string, NUMBER_OF_ROOMS>& _rooms;
+	std::vector<room>& building;
+	std::array<std::string, NUMBER_OF_ROOMS>& rooms;
 };

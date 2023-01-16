@@ -1,6 +1,6 @@
 #include "AddNoteState.h"
 
-AddNoteState::AddNoteState(std::vector<room>& building, std::array<std::string, NUMBER_OF_ROOMS>& rooms) : _building(building), _rooms(rooms)
+AddNoteState::AddNoteState(std::vector<room>& building, std::array<std::string, NUMBER_OF_ROOMS>& rooms) : building(building), rooms(rooms)
 {
     Run();
 }
@@ -19,7 +19,7 @@ void AddNoteState::Run()
 
         for (int i = 0; i < NUMBER_OF_ROOMS; i++)
         {
-            std::cout << i + 1 << " - " << _rooms[i] << "\n";
+            std::cout << i + 1 << " - " << rooms[i] << "\n";
         }
         checkUserInputBetweenMinMax(roomChoice, 1, NUMBER_OF_ROOMS);
 
@@ -32,7 +32,7 @@ void AddNoteState::Run()
 
         if (!note.empty())
         {
-            addNote(_building, _rooms[roomChoice - 1], note);
+            addNote(building, rooms[roomChoice - 1], note);
         }
     }
 }
